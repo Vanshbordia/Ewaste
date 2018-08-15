@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity{
 
 
                 // Showing Toast message after successfully data submit.
-                Toast.makeText(MainActivity.this,OptionHolder, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"Successfully sent request", Toast.LENGTH_LONG).show();
 
             }
         });
