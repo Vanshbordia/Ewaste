@@ -1,6 +1,5 @@
 package com.vansh.ewaste;
 
-import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.vansh.ewaste.Selection.*;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity{
 
 
                 // Showing Toast message after successfully data submit.
-                Toast.makeText(MainActivity.this,TypeHolder, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"Successfully sent a request", Toast.LENGTH_LONG).show();
 
             }
         });
