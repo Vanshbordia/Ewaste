@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1028760910690",
+    "firebase_url": "https://ewaste-a89f2.firebaseio.com",
+    "project_id": "ewaste-a89f2",
+    "storage_bucket": "ewaste-a89f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1028760910690:android:bcffa7662f3e199c",
+        "android_client_info": {
+          "package_name": "com.vansh.ewaste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1028760910690-78l78qqrlvq27djbotrec1b9dcnlfro2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vansh.ewaste",
+            "certificate_hash": "3ec91e9f2f3055696bddd19c9ffb612c5471cb68"
+          }
+        },
+        {
+          "client_id": "1028760910690-gd3dmb91vnn325bos0ivqmrvq7vakhsh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMWTurUmXNk7Cf5BirkWtijsmFf2yjBkk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1028760910690-gd3dmb91vnn325bos0ivqmrvq7vakhsh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
