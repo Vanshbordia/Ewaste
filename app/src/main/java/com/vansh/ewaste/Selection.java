@@ -98,10 +98,12 @@ public class Selection extends AppCompatActivity {
 
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Intent intent1 = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra(Intent.EXTRA_TEXT,a);
-                startActivity(intent1);
+
+                Intent intent1 = new Intent(getApplicationContext(), Image.class);
+                intent1.putExtra(Intent.EXTRA_TEXT,a);
                 startActivity(intent);
+                startActivity(intent1);
 
 
             }
