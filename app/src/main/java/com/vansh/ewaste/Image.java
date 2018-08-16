@@ -1,5 +1,6 @@
 package com.vansh.ewaste;
 
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -33,6 +34,7 @@ public class Image extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST = 71;
     String  OptionHolder2;
 
+
     //Firebase
     FirebaseStorage storage;
     StorageReference storageReference;
@@ -59,12 +61,19 @@ public class Image extends AppCompatActivity {
             public void onClick(View v) {
 
                 uploadImage();
+                Intent intent1 = getIntent();
+                String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
 
+                Intent intent = new Intent(com.vansh.ewaste.Image.this, com.vansh.ewaste.MainActivity.class);
+                intent.putExtra(Intent.EXTRA_TEXT,OptionHolder2);
+                startActivity(intent1);
+                startActivity(intent);
 
             }
         });
+        /*
         addListenerOnButton();
-
+*/
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
@@ -129,11 +138,12 @@ public class Image extends AppCompatActivity {
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
                         }
                     });
+
         }
 
 
     }
-
+/*
     public void addListenerOnButton() {
 
 
@@ -155,8 +165,8 @@ public class Image extends AppCompatActivity {
             }
 
         });
-
+*/
 
     }
-}
+
 
