@@ -32,9 +32,9 @@
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="match_parent"
-        android:layout_height="449dp"
+        android:layout_height="466dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="78dp" />
+        android:layout_marginBottom="31dp" />
 
 </RelativeLayout>
