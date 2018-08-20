@@ -10,6 +10,7 @@ public class StudentDetails  {
 
 
 
+
     public StudentDetails() {
         // This is default constructor.
 
@@ -53,6 +54,7 @@ public class StudentDetails  {
 
         this.Option = option;
     }
+
 
 
 

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,7 +32,9 @@ public class Image extends AppCompatActivity {
     Button btnUpload;
     Button button1;
     private final int PICK_IMAGE_REQUEST = 71;
-    String  OptionHolder2;
+    String downloadUrl;
+    String  OptionHolder2 ;
+    String ImageHolder;
 
 
     //Firebase
@@ -46,6 +49,9 @@ public class Image extends AppCompatActivity {
         Button btnChoose = findViewById(R.id.btnChoose);
         Button btnUpload = findViewById(R.id.btnUpload);
         imageView = findViewById(R.id.imgView);
+       /*
+        downloadUrl = (TextView) findViewById(R.id.textView4);
+*/
 
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +125,18 @@ public class Image extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
+                            Uri url = taskSnapshot.getDownloadUrl();
+                            /*
+                            downloadUrl(url.toString());
+
+                            */
+                            Intent intent3 = new Intent(Image.this, MainActivity.class);
+                            intent3.putExtra(Intent.EXTRA_TEXT,downloadUrl);
+                            startActivity(intent3);
+
                             Toast.makeText(Image.this, "Uploaded", Toast.LENGTH_SHORT).show();
+
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

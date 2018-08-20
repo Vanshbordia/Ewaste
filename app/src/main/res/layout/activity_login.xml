@@ -26,8 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="Login In"
-        android:textSize="25dp" />
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/TVSignIn"
