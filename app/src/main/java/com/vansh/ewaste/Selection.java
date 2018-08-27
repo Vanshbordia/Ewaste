@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class Selection extends AppCompatActivity {
 
     Button button;
-     String  a, b;
+    String  a, b;
     EditText Quantity;
 
     @Override

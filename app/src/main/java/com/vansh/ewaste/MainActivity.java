@@ -19,11 +19,7 @@ public class MainActivity extends AppCompatActivity{
     public static final String Firebase_Server_URL = "https://ewaste-a89f2.firebaseio.com/ ";
 
     // Declaring String variables to store name & phone number get from EditText.
-    String NameHolder;
-    String NumberHolder;
-    String AddressHolder;
-    String OptionHolder;
-    String OptionHolder1;
+    String NameHolder, NumberHolder, AddressHolder, OptionHolder, OptionHolder1;
 
     Firebase firebase;
 
@@ -63,13 +59,11 @@ public class MainActivity extends AppCompatActivity{
                 StudentDetails studentDetails = new StudentDetails();
                 Selection selection = new Selection();
 
-
                 GetDataFromEditText();
                 Intent intent = getIntent();
                 String TypeHolder = intent.getStringExtra(Intent.EXTRA_TEXT);
                 Intent intent1 = getIntent();
                 String TypeHolder1 = intent.getStringExtra(Intent.EXTRA_TEXT);
-
 
                 // Adding name into class function object.
                 studentDetails.setName(NameHolder);
@@ -81,17 +75,17 @@ public class MainActivity extends AppCompatActivity{
                 studentDetails.setOption(OptionHolder);
                 studentDetails.setOption(OptionHolder1);
 
-
                 // Getting the ID from firebase database.
                 String StudentRecordIDFromServer = databaseReference.push().getKey();
 
                 // Adding the both name and number values using student details class object using ID.
                 databaseReference.child(StudentRecordIDFromServer).setValue(studentDetails);
 
-                Intent intent2 = new Intent(com.vansh.ewaste.MainActivity.this, com.vansh.ewaste.Finish.class);
-                startActivity(intent2);
+
                 // Showing Toast message after successfully data submit.
                 Toast.makeText(MainActivity.this,"Successfully sent request", Toast.LENGTH_LONG).show();
+                Intent F = new Intent(MainActivity.this, Finish.class);
+                startActivity(F);
 
             }
         });
@@ -106,8 +100,6 @@ public class MainActivity extends AppCompatActivity{
         String TypeHolder = intent.getStringExtra(Intent.EXTRA_TEXT);
         Intent intent1 = getIntent();
         String TypeHolder1 = intent1.getStringExtra(Intent.EXTRA_TEXT);
-
-
         NameHolder = NameEditText.getText().toString().trim();
 
         NumberHolder = PhoneNumberEditText.getText().toString().trim();
@@ -115,7 +107,6 @@ public class MainActivity extends AppCompatActivity{
         AddressHolder = AddressEditText.getText().toString().trim();
         OptionHolder = TypeHolder;
         OptionHolder1= TypeHolder1;
-
 
 
 
