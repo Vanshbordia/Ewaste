@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -16,29 +15,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Startup">
+
+        </activity>
+        <activity
+            android:name=".ActivityLogin"
+            android:parentActivityName=".Startup">
+            <meta-data
+                android:name="android.support.Parent_Actvity"
+                android:value="com.vansh.ewaste.Startup" />
+        </activity>
+        <activity android:name=".ActivitySignup" />
+        <activity android:name=".Selection" />
+        <activity android:name=".StudentDetails" />
+        <activity
+            android:name=".Image"
+            android:parentActivityName=".Selection" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Finish" />
+        <activity android:name=".Loginn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityLogin"
-            android:parentActivityName=".Startup">
-            <meta-data
-                android:name="android.support.Parent_Actvity"
-                android:value="com.vansh.ewaste.Startup"/>
-
-        </activity>
-        <activity android:name=".ActivitySignup"/>
-        <activity android:name=".Selection" />
-        <activity android:name=".StudentDetails" />
-        <activity android:name=".Image"
-            android:parentActivityName="com.vansh.ewaste.Selection">
-
-        </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Finish" />
-
     </application>
 
 </manifest>
