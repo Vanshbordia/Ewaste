@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity{
                 if (hasFocus) {
 
                 } else {
-                    if (PhoneNumberEditText.getText().toString().length() <=9) {
+                    if (PhoneNumberEditText.getText().toString().length() <=10 ) {
                         PhoneNumberEditText.setError("Please enter your number correctly");
                     } else {
                         // your code here

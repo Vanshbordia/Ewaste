@@ -41,22 +41,32 @@ public class Loginn extends AppCompatActivity {
     Button btnLogIn;
     TextView signup;
     FirebaseAuth firebaseAuth;
+    public EditText emailId, passwd;
+    Button btnSignUp;
+
+
+
     private FirebaseAuth.AuthStateListener authStateListener;
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "CutPasteId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginn);
-
+        firebaseAuth = FirebaseAuth.getInstance();
         myView = findViewById(R.id.my_view);
         myView1 = findViewById(R.id.my_view1);
         myButton = findViewById(R.id.my_button);
         firebaseAuth = FirebaseAuth.getInstance();
         loginEmailId = findViewById(R.id.loginEmail);
-        logInpasswd = findViewById(R.id.loginpaswd);
+        logInpasswd  = findViewById(R.id.loginpaswd);
         btnLogIn = findViewById(R.id.btnLogIn);
-        signup = findViewById(R.id.TVSignIn);
+        emailId = findViewById(R.id.ETemail);
+        passwd = findViewById(R.id.ETpassword);
+        btnSignUp = findViewById(R.id.btnSignUp);
+
+
+
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -70,13 +80,7 @@ public class Loginn extends AppCompatActivity {
                 }
             }
         };
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent I = new Intent(Loginn.this, ActivitySignup.class);
-                startActivity(I);
-            }
-        });
+
         btnLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +110,40 @@ public class Loginn extends AppCompatActivity {
                 }
             }
         });
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String emailID = emailId.getText().toString();
+                String paswd = passwd.getText().toString();
+                if (emailID.isEmpty()) {
+                    emailId.setError("Provide your Email first!");
+                    emailId.requestFocus();
+                } else if (paswd.isEmpty()) {
+                    passwd.setError("Set your password");
+                    passwd.requestFocus();
+                } else if (emailID.isEmpty() && paswd.isEmpty()) {
+                    Toast.makeText(Loginn.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
+                } else if (!(emailID.isEmpty() && paswd.isEmpty())) {
+                    firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(Loginn.this, new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task1) {
+
+                            if (!task1.isSuccessful()) {
+                                Toast.makeText(Loginn.this.getApplicationContext(),
+                                        "SignUp unsuccessful: " + task1.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                startActivity(new Intent(Loginn.this, Selection.class));
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(Loginn.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
 
 
@@ -114,9 +152,9 @@ public class Loginn extends AppCompatActivity {
         // initialize as invisible (could also do in xml)
 
         myView1.setVisibility(View.INVISIBLE);
-        myButton.setText("Login");
+        myButton.setText("Signup");
         isUp = false;
-    }
+    }/*protected void*/
 
     @Override
     protected void onStart() {
@@ -153,13 +191,13 @@ public class Loginn extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     public void onSlideViewButtonClick(View view) {
         if (isUp) {
-            slideDown(myView);
-            slideUp(myView1);
+            slideDown(myView1);
+            slideUp(myView);
 
             myButton.setText("Signup");
         } else {
-            slideDown(myView1);
-            slideUp(myView);
+            slideDown(myView);
+            slideUp(myView1);
             myButton.setText("Login");
         }
         isUp = !isUp;
