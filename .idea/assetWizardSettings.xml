@@ -64,11 +64,11 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="height" value="4740" />
-                            <entry key="outputName" value="ic_untitled" />
+                            <entry key="height" value="1080" />
+                            <entry key="outputName" value="ic_logop" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="D:\Balvigyan\UI\Raw files\untitled.psd" />
-                            <entry key="width" value="4313" />
+                            <entry key="sourceFile" value="C:\App\Newfolder\Ewaste\app\src\main\res\logop.svg" />
+                            <entry key="width" value="1080" />
                           </map>
                         </option>
                       </PersistentState>

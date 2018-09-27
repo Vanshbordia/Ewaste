@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class Image extends AppCompatActivity {
     Button button1;
     private final int PICK_IMAGE_REQUEST = 71;
     String downloadUrl;
-    String  OptionHolder2 ;
+    String OptionHolder2;
     String ImageHolder;
 
 
@@ -49,14 +50,12 @@ public class Image extends AppCompatActivity {
         Button btnChoose = findViewById(R.id.btnChoose);
         Button btnUpload = findViewById(R.id.btnUpload);
         imageView = findViewById(R.id.imgView);
-       /*
-        downloadUrl = (TextView) findViewById(R.id.textView4);
-*/
-
         btnChoose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 chooseImage();
+                Intent intent1 = getIntent();
+                String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
             }
 
         });
@@ -66,32 +65,16 @@ public class Image extends AppCompatActivity {
             public void onClick(View v) {
 
                 uploadImage();
+
                 Intent intent1 = getIntent();
                 String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
 
-                Intent intent = new Intent(com.vansh.ewaste.Image.this, com.vansh.ewaste.MainActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT,OptionHolder2);
-                startActivity(intent1);
-                startActivity(intent);
-
             }
         });
-        /*
-        addListenerOnButton();
-*/
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
 
 
-    }
-
-
-    //Internal Class for Choose Image
-    private void chooseImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     @Override
@@ -110,8 +93,20 @@ public class Image extends AppCompatActivity {
     }
 
 
+    //Internal Class for Choose Image
+    private void chooseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
+
+
+    }
+
     //Internal Class for Upload Image
     private void uploadImage() {
+
 
 
         if (filePath != null) {
@@ -127,15 +122,21 @@ public class Image extends AppCompatActivity {
                             progressDialog.dismiss();
                             Uri url = taskSnapshot.getDownloadUrl();
                             /*
-                            downloadUrl(url.toString());
+                            Intent intent1 = getIntent();
+                            String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
+                            intent1.putExtra(Intent.EXTRA_TEXT, OptionHolder2);
+                            intent1 = new Intent(Image.this, MainActivity.class);
 
+                            startActivity(intent1);
+                            ///startActivity(intent);
                             */
-                            Intent intent3 = new Intent(Image.this, MainActivity.class);
-                            intent3.putExtra(Intent.EXTRA_TEXT,downloadUrl);
-                            startActivity(intent3);
+                            Intent intent1 = getIntent();
+                            String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
 
-                            Toast.makeText(Image.this, "Uploaded", Toast.LENGTH_SHORT).show();
-
+                            Intent intent = new Intent(com.vansh.ewaste.Image.this, com.vansh.ewaste.MainActivity.class);
+                            intent.putExtra(Intent.EXTRA_TEXT,OptionHolder2);
+                            startActivity(intent1);
+                            startActivity(intent);
 
                         }
                     })
@@ -152,37 +153,29 @@ public class Image extends AppCompatActivity {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
                                     .getTotalByteCount());
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
+
+
+/*
+                            Intent intent3 = new Intent(Image.this, MainActivity.class);
+                            intent3.putExtra(Intent.EXTRA_TEXT, downloadUrl);
+                            startActivity(intent3);
+*/
+/*
+                            Intent intent1 = getIntent();
+                           /// String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
+                            intent1.putExtra(Intent.EXTRA_TEXT, OptionHolder2);
+                            intent1 = new Intent(Image.this, MainActivity.class);
+
+                            startActivity(intent1);
+                            ///startActivity(intent);
+*/
+                            Toast.makeText(Image.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     });
 
         }
 
-
     }
-/*
-    public void addListenerOnButton() {
-
-
-        button1= findViewById(R.id.button4);
-
-        button1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                Intent intent1 = getIntent();
-                String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
-
-                Intent intent = new Intent(com.vansh.ewaste.Image.this, com.vansh.ewaste.MainActivity.class);
-                intent.putExtra(Intent.EXTRA_TEXT,OptionHolder2);
-                startActivity(intent1);
-                startActivity(intent);
-
-
-            }
-
-        });
-*/
-
-    }
+}
 
 

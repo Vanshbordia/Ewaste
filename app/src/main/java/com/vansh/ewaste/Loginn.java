@@ -1,12 +1,15 @@
 package com.vansh.ewaste;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.AnimationDrawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import android.content.Intent;
@@ -43,6 +46,10 @@ public class Loginn extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     public EditText emailId, passwd;
     Button btnSignUp;
+    ConstraintLayout ConstraintLayout;
+    AnimationDrawable animationDrawable ;
+
+
 
 
 
@@ -65,6 +72,16 @@ public class Loginn extends AppCompatActivity {
         passwd = findViewById(R.id.ETpassword);
         btnSignUp = findViewById(R.id.btnSignUp);
 
+
+/*
+        animationDrawable = (AnimationDrawable) btnLogIn.getBackground();
+
+        animationDrawable.setEnterFadeDuration(3000);
+
+        animationDrawable.setExitFadeDuration(4500);
+
+        animationDrawable.start();
+*/
 
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
