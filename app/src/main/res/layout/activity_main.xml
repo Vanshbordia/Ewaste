@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:id="@+id/mainroot"
+    tools:context=".MainActivity"
+    android:background="@drawable/root_calling_gradient">
 
     <EditText
         android:id="@+id/name"
@@ -75,6 +77,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.292"
-        android:maxLength="11" />
+        android:maxLength="10" />
 
 </android.support.constraint.ConstraintLayout>

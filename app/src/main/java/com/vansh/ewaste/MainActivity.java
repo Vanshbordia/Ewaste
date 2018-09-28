@@ -1,9 +1,11 @@
 package com.vansh.ewaste;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -20,6 +22,8 @@ public class MainActivity extends AppCompatActivity{
     Button SubmitButton ;
 
     EditText NameEditText, PhoneNumberEditText, AddressEditText;
+    ConstraintLayout constraintLayout;
+    AnimationDrawable animationDrawable ;
 
     public static final String Firebase_Server_URL = "https://ewaste-a89f2.firebaseio.com/ ";
 
@@ -43,6 +47,15 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContex(MainActivity.this);
 
+        constraintLayout = findViewById(R.id.mainroot);
+
+        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+
+        animationDrawable.setEnterFadeDuration(3000);
+
+        animationDrawable.setExitFadeDuration(4500);
+
+        animationDrawable.start();
         firebase = new Firebase();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -61,7 +74,7 @@ public class MainActivity extends AppCompatActivity{
                 if (hasFocus) {
 
                 } else {
-                    if (PhoneNumberEditText.getText().toString().length() <=10 ) {
+                    if (PhoneNumberEditText.getText().toString().length() <10 ) {
                         PhoneNumberEditText.setError("Please enter your number correctly");
                     } else {
                         // your code here

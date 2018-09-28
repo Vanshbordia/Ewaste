@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Selection">
+    android:id="@+id/selroot"
+    tools:context=".Selection"
+    android:background="@drawable/root_calling_gradient">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -127,6 +129,7 @@
                     app:layout_constraintVertical_bias="0.986" />
 
             </RadioGroup>
+
         </LinearLayout>
     </ScrollView>
 

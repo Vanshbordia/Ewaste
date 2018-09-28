@@ -3,11 +3,13 @@ package com.vansh.ewaste;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +38,8 @@ public class Image extends AppCompatActivity {
     String downloadUrl;
     String OptionHolder2;
     String ImageHolder;
+    ConstraintLayout constraintLayout;
+    AnimationDrawable animationDrawable ;
 
 
     //Firebase
@@ -46,6 +50,15 @@ public class Image extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
+        constraintLayout = findViewById(R.id.imageroot);
+
+        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+
+        animationDrawable.setEnterFadeDuration(3000);
+
+        animationDrawable.setExitFadeDuration(4500);
+
+        animationDrawable.start();
         //Initialize Views
         Button btnChoose = findViewById(R.id.btnChoose);
         Button btnUpload = findViewById(R.id.btnUpload);
@@ -121,15 +134,7 @@ public class Image extends AppCompatActivity {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             progressDialog.dismiss();
                             Uri url = taskSnapshot.getDownloadUrl();
-                            /*
-                            Intent intent1 = getIntent();
-                            String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
-                            intent1.putExtra(Intent.EXTRA_TEXT, OptionHolder2);
-                            intent1 = new Intent(Image.this, MainActivity.class);
 
-                            startActivity(intent1);
-                            ///startActivity(intent);
-                            */
                             Intent intent1 = getIntent();
                             String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
 
@@ -155,21 +160,6 @@ public class Image extends AppCompatActivity {
                             progressDialog.setMessage("Uploaded " + (int) progress + "%");
 
 
-/*
-                            Intent intent3 = new Intent(Image.this, MainActivity.class);
-                            intent3.putExtra(Intent.EXTRA_TEXT, downloadUrl);
-                            startActivity(intent3);
-*/
-/*
-                            Intent intent1 = getIntent();
-                           /// String OptionHolder2 = intent1.getStringExtra(Intent.EXTRA_TEXT);
-                            intent1.putExtra(Intent.EXTRA_TEXT, OptionHolder2);
-                            intent1 = new Intent(Image.this, MainActivity.class);
-
-                            startActivity(intent1);
-                            ///startActivity(intent);
-*/
-                            Toast.makeText(Image.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         }
                     });
 
