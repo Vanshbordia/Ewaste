@@ -1,5 +1,6 @@
 package com.vansh.ewaste;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -28,11 +29,15 @@ public class ActivitySignup extends AppCompatActivity {
         passwd = findViewById(R.id.ETpassword);
         btnSignUp = findViewById(R.id.btnSignUp);
         signIn = findViewById(R.id.TVSignIn);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String emailID = emailId.getText().toString();
                 String paswd = passwd.getText().toString();
+                progressDialog.setTitle("Signing you up");
+                progressDialog.show();
+                progressDialog.setMessage("Signing you up");
                 if (emailID.isEmpty()) {
                     emailId.setError("Provide your Email first!");
                     emailId.requestFocus();
@@ -47,6 +52,7 @@ public class ActivitySignup extends AppCompatActivity {
                         public void onComplete(@NonNull Task task) {
 
                             if (!task.isSuccessful()) {
+                                progressDialog.hide();
                                 Toast.makeText(ActivitySignup.this.getApplicationContext(),
                                         "SignUp unsuccessful: " + task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();

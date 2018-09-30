@@ -1,6 +1,7 @@
 package com.vansh.ewaste;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.UploadTask;
 
 public class ActivityLogin extends AppCompatActivity {
     public EditText loginEmailId, logInpasswd;
@@ -44,6 +47,7 @@ public class ActivityLogin extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
+
                     Toast.makeText(ActivityLogin.this, "User logged in ", Toast.LENGTH_SHORT).show();
                     Intent I = new Intent(ActivityLogin.this, Selection.class);
                     startActivity(I);
@@ -52,6 +56,7 @@ public class ActivityLogin extends AppCompatActivity {
                 }
             }
         };
+        final ProgressDialog progressDialog = new ProgressDialog(this);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +69,9 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View view) {
                 String userEmail = loginEmailId.getText().toString();
                 String userPaswd = logInpasswd.getText().toString();
+                progressDialog.setTitle("Logging in");
+                progressDialog.show();
+                progressDialog.setMessage("Logging in");
                 if (userEmail.isEmpty()) {
                     loginEmailId.setError("Provide your Email first!");
                     loginEmailId.requestFocus();
@@ -74,11 +82,15 @@ public class ActivityLogin extends AppCompatActivity {
                     Toast.makeText(ActivityLogin.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
                 } else if (!(userEmail.isEmpty() && userPaswd.isEmpty())) {
                     firebaseAuth.signInWithEmailAndPassword(userEmail, userPaswd).addOnCompleteListener(ActivityLogin.this, new OnCompleteListener() {
+
                         @Override
                         public void onComplete(@NonNull Task task) {
+
                             if (!task.isSuccessful()) {
+                                progressDialog.hide();
                                 Toast.makeText(ActivityLogin.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
+
                                 startActivity(new Intent(ActivityLogin.this, Selection.class));
                             }
                         }
@@ -96,6 +108,5 @@ public class ActivityLogin extends AppCompatActivity {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
     }
-
 
 }
