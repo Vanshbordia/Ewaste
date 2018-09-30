@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity{
     Button SubmitButton ;
 
     EditText NameEditText, PhoneNumberEditText, AddressEditText;
-    ConstraintLayout constraintLayout;
-    AnimationDrawable animationDrawable ;
+
 
     public static final String Firebase_Server_URL = "https://ewaste-a89f2.firebaseio.com/ ";
 
@@ -47,15 +46,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContex(MainActivity.this);
 
-        constraintLayout = findViewById(R.id.mainroot);
-
-        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-
-        animationDrawable.setEnterFadeDuration(3000);
-
-        animationDrawable.setExitFadeDuration(4500);
-
-        animationDrawable.start();
         firebase = new Firebase();
 
         databaseReference = FirebaseDatabase.getInstance().getReference();

@@ -25,7 +25,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class ActivityLogin extends AppCompatActivity {
     public EditText loginEmailId, logInpasswd;
     Button btnLogIn;
-    TextView signup;
+    TextView signup,ewaste;
     FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -38,6 +38,7 @@ public class ActivityLogin extends AppCompatActivity {
         logInpasswd = findViewById(R.id.loginpaswd);
         btnLogIn = findViewById(R.id.btnLogIn);
         signup = findViewById(R.id.TVSignIn);
+        ewaste = findViewById(R.id.textView5);
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

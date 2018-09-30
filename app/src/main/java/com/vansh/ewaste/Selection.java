@@ -16,8 +16,7 @@ public class Selection extends AppCompatActivity {
     Button button;
     String  a, b;
     EditText Quantity;
-    ConstraintLayout constraintLayout;
-    AnimationDrawable animationDrawable ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +24,7 @@ public class Selection extends AppCompatActivity {
         setContentView(R.layout.activity_selection);
         addListenerOnButton();
         Quantity = findViewById(R.id.Quantity);
-        constraintLayout = findViewById(R.id.selroot);
 
-        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-
-        animationDrawable.setEnterFadeDuration(3000);
-
-        animationDrawable.setExitFadeDuration(4500);
-
-        animationDrawable.start();
 
     }
     public void onRadioButtonClicked(View view) {

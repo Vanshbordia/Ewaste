@@ -38,8 +38,7 @@ public class Image extends AppCompatActivity {
     String downloadUrl;
     String OptionHolder2;
     String ImageHolder;
-    ConstraintLayout constraintLayout;
-    AnimationDrawable animationDrawable ;
+
 
 
     //Firebase
@@ -50,15 +49,7 @@ public class Image extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
-        constraintLayout = findViewById(R.id.imageroot);
 
-        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-
-        animationDrawable.setEnterFadeDuration(3000);
-
-        animationDrawable.setExitFadeDuration(4500);
-
-        animationDrawable.start();
         //Initialize Views
         Button btnChoose = findViewById(R.id.btnChoose);
         Button btnUpload = findViewById(R.id.btnUpload);
