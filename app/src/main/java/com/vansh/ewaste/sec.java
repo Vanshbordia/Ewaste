@@ -18,7 +18,7 @@ Button btn;
             @Override
             public void onClick(View view) {
 
-                Intent intent5 = new Intent(com.vansh.ewaste.sec.this, com.vansh.ewaste.Loginn.class);
+                Intent intent5 = new Intent(com.vansh.ewaste.sec.this, com.vansh.ewaste.ActivityLogin   .class);
                 startActivity(intent5);
             }
         });
